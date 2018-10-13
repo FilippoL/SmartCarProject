@@ -1,4 +1,8 @@
+from BeepForDistance import DistanceMeasurement
+
 def main():
+    dm = DistanceMeasurement()
+    dm.initialise_measurement()
     while True:
         run_program()
 
