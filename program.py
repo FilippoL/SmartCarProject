@@ -7,8 +7,9 @@ def main():
     dm = DistanceMeasurement()
     dm.initialise()
     while True:
-        dm.update()
-        cam.start()
+	if ord("v"):
+	   cam.start()
+	dm.update()        
 
 def run_program():
     pass
