@@ -1,10 +1,14 @@
 from BeepForDistance import DistanceMeasurement
+from CameraManager import Camera
 
 def main():
+    cam = Camera()
+    cam.initialise()
     dm = DistanceMeasurement()
-    dm.initialise_measurement()
+    dm.initialise()
     while True:
-        run_program()
+        dm.update()
+        cam.start()
 
 def run_program():
     pass

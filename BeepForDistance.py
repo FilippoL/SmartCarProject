@@ -10,7 +10,7 @@ class DistanceMeasurement:
         self.distance = 0
         self.pulse_duration = 0
 
-    def initialise_measurement(self):
+    def initialise(self):
         GPIO.setmode(GPIO.BCM)
         print ("Distance measurement in progress...")
         GPIO.setup(self.TRIG, GPIO.OUT)
@@ -23,7 +23,7 @@ class DistanceMeasurement:
         GPIO.output(self.TRIG,True)
         time.sleep(0.00001)
         GPIO.output(self.TRIG, False)
-        while GPIO.input(ECHO) == 0:
+        while GPIO.input(self.ECHO) == 0:
             GPIO.output(self.PIEZO, True)
             pulse_start = time.time()
 
@@ -34,7 +34,7 @@ class DistanceMeasurement:
         self.pulse_duration = pulse_end - pulse_start
         self.distance = self.pulse_duration * 17150
         self.distance = round(self.distance, 0)
-        GPIO.output(selfTRIG, False)
+        GPIO.output(self.TRIG, False)
         print ("Distance:",self.distance,"cm")
         time.sleep(min(max(0.025, self.distance/250), 2.5))
 
