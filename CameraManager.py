@@ -11,26 +11,25 @@ class Camera:
             self.resolution = resolution
             self.framerate = framerate
             self.rawCapture = PiRGBArray(self.camera, size=(640, 480))
-        
+
 	def initialise(self):
             self.camera.framerate = self.framerate
             self.camera.resolution = self.resolution
             time.sleep(0.1)
 
 	def start(self):
-	    # capture frames from the camera
+	    	# capture frames from the camera
             for frame in self.camera.capture_continuous(self.rawCapture, format="bgr", use_video_port=True):
-		# grab the raw NumPy array representing the image, then initialize the timestamp
-		# and occupied/unoccupied text
+				# grab the raw NumPy array representing the image, then initialize the timestamp
+				# and occupied/unoccupied text
                 image = frame.array
 
-		# show the frame
+				# show the frame
                 cv2.imshow("Frame", image)
                 key = cv2.waitKey(1) & 0xFF
 
-		# clear the stream in preparation for the next frame
+				# clear the stream in preparation for the next frame
                 self.rawCapture.truncate(0)
 
-		# if the `q` key was pressed, break from the loop
                 if key == ord("q"):
                    return
